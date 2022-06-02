@@ -1,11 +1,11 @@
-package pl.piasecki.Wallet.repository;
+package pl.piasecki.MyWalletServer.repository;
 
 import java.util.List;
 
 import org.springframework.data.jpa.repository.Query;
 import org.springframework.data.repository.CrudRepository;
 
-import pl.piasecki.Wallet.model.User;
+import pl.piasecki.MyWalletServer.model.User;
 
 public interface UserRepository extends CrudRepository<User, Long> {
 

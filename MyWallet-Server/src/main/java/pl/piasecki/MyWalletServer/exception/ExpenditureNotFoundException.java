@@ -1,4 +1,4 @@
-package pl.piasecki.Wallet.exception;
+package pl.piasecki.MyWalletServer.exception;
 
 public class ExpenditureNotFoundException extends RuntimeException {
 	

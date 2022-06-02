@@ -1,4 +1,4 @@
-package pl.piasecki.Wallet.service;
+package pl.piasecki.MyWalletServer.service;
 
 import java.util.List;
 
@@ -7,9 +7,9 @@ import javax.transaction.Transactional;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import pl.piasecki.Wallet.exception.ExpenditureNotFoundException;
-import pl.piasecki.Wallet.model.Expenditure;
-import pl.piasecki.Wallet.repository.ExpenditureRepository;
+import pl.piasecki.MyWalletServer.exception.ExpenditureNotFoundException;
+import pl.piasecki.MyWalletServer.model.Expenditure;
+import pl.piasecki.MyWalletServer.repository.ExpenditureRepository;
 
 
 @Service

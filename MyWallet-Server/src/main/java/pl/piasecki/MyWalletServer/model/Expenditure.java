@@ -1,4 +1,4 @@
-package pl.piasecki.Wallet.model;
+package pl.piasecki.MyWalletServer.model;
 
 import java.util.Objects;
 
@@ -16,15 +16,20 @@ public class Expenditure {
 	private String name;
 	private float money;
 	private String description;
+	private long user_id;
 	//private LocalDateTime createdTime;
+	
+	
 	
 	public Expenditure() {}
 	
-	public Expenditure( String name, float money, String description) {
+	public Expenditure(String name, float money, String description, long user_id) {
 		this.name = name;
 		this.money = money;
 		this.description = description;
+		this.user_id = user_id;
 	}
+
 
 
 	@Override
@@ -66,12 +71,9 @@ public class Expenditure {
 		this.description = description;
 	}
 	
-	
-	
 	public float getMoney() {
 		return money;
 	}
-
 
 	public void setMoney(float money) {
 		this.money = money;

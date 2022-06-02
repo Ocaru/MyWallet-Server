@@ -1,5 +1,7 @@
+
 /*
-package pl.piasecki.Wallet.configuration;
+package pl.piasecki.MyWalletServer.configuration;
+
 
 import org.springframework.beans.factory.annotation.Autowired;
 
@@ -7,10 +9,10 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.stereotype.Component;
 
-import pl.piasecki.Wallet.model.Expenditure;   
-import pl.piasecki.Wallet.model.User;
-import pl.piasecki.Wallet.repository.ExpenditureRepository;
-import pl.piasecki.Wallet.repository.UserRepository;
+import pl.piasecki.MyWalletServer.model.Expenditure;   
+import pl.piasecki.MyWalletServer.model.User;
+import pl.piasecki.MyWalletServer.repository.ExpenditureRepository;
+import pl.piasecki.MyWalletServer.repository.UserRepository;
 
 @Component
 public class DatabaseLoader implements CommandLineRunner {
@@ -30,15 +32,17 @@ public class DatabaseLoader implements CommandLineRunner {
 		
 		
 		System.out.println("ODPALENIE RUN() W DATABASE LOADER");
-		expenditureRepository.save(new Expenditure("Grocery shopping", 50.30f, "Shopping in Biedra"));
-		expenditureRepository.save(new Expenditure("Food1", 15.00f, "Kebab"));
-		expenditureRepository.save(new Expenditure("Food2", 120.60f, "Two big pizzas"));
-		expenditureRepository.save(new Expenditure("Car", 12600f, "New car"));
-		expenditureRepository.save(new Expenditure("Ice-cream", 5f, "Two ice-creams"));
-		expenditureRepository.save(new Expenditure("Course", 1000f, "Course to learn programming "));
-		
 		userRepository.save(new User("Kamil", "Piasecki", "kamil.piasecki14@gmail.com"));
 		userRepository.save(new User("Diana", "Duda", "diana_xyz@gmail.com"));
+		
+		expenditureRepository.save(new Expenditure("Grocery shopping", 50.30f, "Shopping in Biedra",1));
+		expenditureRepository.save(new Expenditure("Food1", 15.00f, "Kebab",1));
+		expenditureRepository.save(new Expenditure("Food2", 120.60f, "Two big pizzas",1));
+		expenditureRepository.save(new Expenditure("Car", 12600f, "New car",1));
+		expenditureRepository.save(new Expenditure("Ice-cream", 5f, "Two ice-creams",1));
+		expenditureRepository.save(new Expenditure("Course", 1000f, "Course to learn programming ",1));
+		
+
 
 
 	}

@@ -1,4 +1,4 @@
-package pl.piasecki.Wallet.exception;
+package pl.piasecki.MyWalletServer.exception;
 
 import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.ControllerAdvice;

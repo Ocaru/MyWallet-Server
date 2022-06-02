@@ -1,4 +1,4 @@
-package pl.piasecki.Wallet.model;
+package pl.piasecki.MyWalletServer.model;
 
 import java.util.List;
 
@@ -29,7 +29,7 @@ public class User {
 	}
 	
 	@OneToMany(cascade = CascadeType.REMOVE)
-	@JoinColumn(name ="post_id", updatable = false, insertable = false) 
+	@JoinColumn(name ="user_id", updatable = false, insertable = false) 
 	private List<Expenditure> expenditureList;
 	
 	public long getId() {

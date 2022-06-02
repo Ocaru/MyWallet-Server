@@ -1,4 +1,4 @@
-package pl.piasecki.Wallet.controller;
+package pl.piasecki.MyWalletServer.controller;
 
 import java.util.List;
 
@@ -7,8 +7,8 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RestController;
 
-import pl.piasecki.Wallet.model.User;
-import pl.piasecki.Wallet.service.UserService;
+import pl.piasecki.MyWalletServer.model.User;
+import pl.piasecki.MyWalletServer.service.UserService;
 
 @RestController
 public class UserController {

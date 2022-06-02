@@ -1,4 +1,4 @@
-package pl.piasecki.Wallet.controller;
+package pl.piasecki.MyWalletServer.controller;
 
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -7,7 +7,7 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.client.RestTemplate;
 
-import pl.piasecki.Wallet.model.User;
+import pl.piasecki.MyWalletServer.model.User;
 
 @Controller
 public class HomeController {

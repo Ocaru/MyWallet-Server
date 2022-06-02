@@ -1,12 +1,12 @@
-package pl.piasecki.Wallet.service;
+package pl.piasecki.MyWalletServer.service;
 
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import pl.piasecki.Wallet.model.User;
-import pl.piasecki.Wallet.repository.UserRepository;
+import pl.piasecki.MyWalletServer.model.User;
+import pl.piasecki.MyWalletServer.repository.UserRepository;
 
 @Service
 public class UserService {

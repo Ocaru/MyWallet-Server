@@ -1,4 +1,4 @@
-package pl.piasecki.Wallet.controller;
+package pl.piasecki.MyWalletServer.controller;
 
 import java.util.List;
 
@@ -11,8 +11,8 @@ import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RestController;
 
-import pl.piasecki.Wallet.model.Expenditure;
-import pl.piasecki.Wallet.service.ExpenditureService;
+import pl.piasecki.MyWalletServer.model.Expenditure;
+import pl.piasecki.MyWalletServer.service.ExpenditureService;
 
 
 @RestController
