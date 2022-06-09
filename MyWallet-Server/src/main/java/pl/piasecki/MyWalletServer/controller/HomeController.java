@@ -21,7 +21,7 @@ public class HomeController {
 		this.userController = userController;
 	}
 
-
+/*
 	@RequestMapping("/")
 	public String index(Model model)
 	{
@@ -33,6 +33,6 @@ public class HomeController {
 		model.addAttribute("userList", userTable);	
 		return "index";
 	}
-	
+	*/
 
 }
