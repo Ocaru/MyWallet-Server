@@ -80,10 +80,20 @@ public class Expenditure {
 	}
 
 
+	public long getUser_id() {
+		return user_id;
+	}
+
+	public void setUser_id(long user_id) {
+		this.user_id = user_id;
+	}
+
 	@Override
 	public String toString() {
-		return "Expenditure [id=" + id + ", name=" + name + ", money=" + money + ", description=" + description + "]";
+		return "Expenditure [id=" + id + ", name=" + name + ", money=" + money + ", description=" + description
+				+ ", user_id=" + user_id + "]";
 	}
+
 
 
 	

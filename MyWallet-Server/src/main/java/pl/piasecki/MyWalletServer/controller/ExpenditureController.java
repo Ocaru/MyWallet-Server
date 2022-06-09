@@ -35,7 +35,7 @@ public class ExpenditureController {
 	
 	
 	@PostMapping("/expenditures")
-	public Expenditure addPost(@RequestBody Expenditure expenditure)
+	public Expenditure addExpenditure(@RequestBody Expenditure expenditure)
 	{
 		return expenditureService.addExpenditure(expenditure);
 	}
@@ -47,7 +47,7 @@ public class ExpenditureController {
 	}
 	
 	@DeleteMapping("/expenditures/{id}")
-	public void deletePost(@PathVariable long id)
+	public void deleteExpenditure(@PathVariable long id)
 	{
 		expenditureService.deleteExpenditure(id);
 	}

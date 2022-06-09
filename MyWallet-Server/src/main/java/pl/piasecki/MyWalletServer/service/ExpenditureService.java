@@ -41,6 +41,7 @@ public class ExpenditureService {
 		expenditureEdited.setName(expenditure.getName());
 		expenditureEdited.setMoney(expenditure.getMoney());
 		expenditureEdited.setDescription(expenditure.getDescription());
+		expenditureEdited.setUser_id(expenditure.getUser_id());
 		return expenditureEdited;
 	}
 
