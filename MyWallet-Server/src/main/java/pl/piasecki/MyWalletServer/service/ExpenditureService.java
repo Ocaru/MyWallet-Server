@@ -28,6 +28,11 @@ public class ExpenditureService {
 		return expenditureRepository.findById(id).orElseThrow(() -> new ExpenditureNotFoundException(id));
 	}
 	
+	public List<Expenditure> getExpenditureByUser_id(long user_id)
+	{
+		return expenditureRepository.findExpenditureByUser_id(user_id);
+	}
+	
 
 	public Expenditure addExpenditure(Expenditure expenditure) {
 		

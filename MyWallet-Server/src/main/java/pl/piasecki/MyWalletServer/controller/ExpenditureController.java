@@ -33,6 +33,12 @@ public class ExpenditureController {
 		return expenditureService.getExpenditure(id);
 	}
 	
+	@GetMapping("/expenditures/user_id={user_id}")
+	public List<Expenditure> getExpenditureByUser_id(@PathVariable long user_id)
+	{
+		return expenditureService.getExpenditureByUser_id(user_id);
+	}
+	
 	
 	@PostMapping("/expenditures")
 	public Expenditure addExpenditure(@RequestBody Expenditure expenditure)
