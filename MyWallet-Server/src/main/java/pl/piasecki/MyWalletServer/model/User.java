@@ -20,6 +20,11 @@ public class User {
 	private String surname;
 	private String email;
 	
+	@OneToMany(cascade = CascadeType.REMOVE)
+	@JoinColumn(name ="user_id", updatable = false, insertable = false) 
+	private List<Expenditure> expenditureList;
+	
+	
 	public User() {}
 	
 	public User( String name, String surname, String email) {
@@ -27,10 +32,6 @@ public class User {
 		this.surname = surname;
 		this.email = email;
 	}
-	
-	@OneToMany(cascade = CascadeType.REMOVE)
-	@JoinColumn(name ="user_id", updatable = false, insertable = false) 
-	private List<Expenditure> expenditureList;
 	
 	public long getId() {
 		return id;
