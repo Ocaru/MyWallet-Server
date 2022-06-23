@@ -7,12 +7,11 @@ import javax.transaction.Transactional;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import pl.piasecki.MyWalletServer.model.Expenditure;
 import pl.piasecki.MyWalletServer.model.User;
 import pl.piasecki.MyWalletServer.repository.UserRepository;
 
 @Service
-public class UserService {
+public class UserService  {
 
 	@Autowired
 	private UserRepository userRepository;
