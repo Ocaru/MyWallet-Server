@@ -33,25 +33,9 @@ public class Expenditure {
 		this.date = date;
 		this.description = description;
 		this.user_id = user_id;
-		this.category_id=category_id;
+		this.category_id = category_id;
 	}
 
-
-
-	@Override
-	public boolean equals(Object o) {
-		
-		float epsilon = 0.00000001f;
-		if (this == o) return true;
-		if (o == null || getClass() != o.getClass()) return false;
-		Expenditure expenditure = (Expenditure) o;
-		return Long.compare(id, expenditure.id) == 0 &&
-			Objects.equals(name, expenditure.name) &&
-			money.equals(expenditure.money) &&
-			date.compareTo(expenditure.date)==1 &&
-			Objects.equals(description, expenditure.description);
-	}
-	
 	
 	@Override
 	public int hashCode() {

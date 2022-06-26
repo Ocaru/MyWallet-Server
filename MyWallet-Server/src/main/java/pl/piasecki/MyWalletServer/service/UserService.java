@@ -1,18 +1,21 @@
 package pl.piasecki.MyWalletServer.service;
 
+import java.util.HashSet;
 import java.util.List;
+import java.util.Set;
 
 import javax.transaction.Transactional;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import pl.piasecki.MyWalletServer.model.Expenditure;
+import pl.piasecki.MyWalletServer.model.Role;
 import pl.piasecki.MyWalletServer.model.User;
+import pl.piasecki.MyWalletServer.model.UserRole;
 import pl.piasecki.MyWalletServer.repository.UserRepository;
 
 @Service
-public class UserService {
+public class UserService  {
 
 	@Autowired
 	private UserRepository userRepository;
@@ -27,8 +30,16 @@ public class UserService {
 		return userRepository.findById(id).orElseThrow();
 	}
 	
+	public User getUserByUsername(String username)
+	{
+		return userRepository.findByUsername(username).orElseThrow();
+	}
+	
 	public User addUser(User user) {
-		
+		UserRole userRole = new UserRole(user, new Role("ROLE_USER"));
+		Set<UserRole> userRoles = new HashSet<UserRole>();
+		userRoles.add(userRole);
+		user.setUserRoles(userRoles);
 		return userRepository.save(user);
 	}
 	
@@ -39,6 +50,9 @@ public class UserService {
 		userEdited.setName(user.getName());
 		userEdited.setSurname(user.getSurname());
 		userEdited.setEmail(user.getEmail());
+		userEdited.setUsername(user.getUsername());
+		userEdited.setPassword(user.getPassword());
+		userEdited.setUserRoles(user.getUserRoles());
 		return userEdited;
 	}
 
