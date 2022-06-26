@@ -10,48 +10,52 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
-import javax.persistence.JoinTable;
-import javax.persistence.ManyToMany;
 import javax.persistence.OneToMany;
 
-import lombok.Data;
+import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 
-@Data
-@Entity
+
+@Entity()
 public class User {
 
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private long id;
 	private String name;
-	private String surname;
+	private String surname; 
 	private String username;
 	private String password;
 	private String email;
 	
+	@JsonIgnore
 	@OneToMany(cascade = CascadeType.REMOVE)
 	@JoinColumn(name ="user_id", updatable = false, insertable = false) 
 	private List<Expenditure> expenditureList;
 	
-    @ManyToMany(fetch = FetchType.EAGER, cascade = CascadeType.ALL)
-    @JoinTable(name = "user_role",
-        joinColumns = @JoinColumn(name = "user_id", referencedColumnName = "id"),
-        inverseJoinColumns = @JoinColumn(name = "role_id", referencedColumnName = "id"))
-    private Set<Role> roles;
-	
-	
+	@JsonIgnoreProperties("user")
+	@OneToMany(fetch = FetchType.EAGER, mappedBy = "user")
+	private Set<UserRole> userRoles;
+
 	public User() {}
 	
 	public User(String name, String surname, String username, 
-			String password, String email, Set<Role> roles) {
+			String password, String email, Set<UserRole> userRoles) {
 		this.name = name;
 		this.surname = surname;
 		this.username = username;
 		this.password = password;
 		this.email = email;
-		this.roles = roles;
+		this.userRoles = userRoles;
 	}
 
+	
+    public void addUserRoles(UserRole userRole) {
+        this.userRoles.add(userRole);
+        userRole.setUser(this);
+    }
+
+    
 	public long getId() {
 		return id;
 	}
@@ -92,12 +96,12 @@ public class User {
 		this.password = password;
 	}
 
-	public Set<Role> getRoles() {
-		return roles;
+	public Set<UserRole> getUserRoles() {
+		return userRoles;
 	}
 
-	public void setRoles(Set<Role> roles) {
-		this.roles = roles;
+	public void setUserRoles(Set<UserRole> userRoles) {
+		this.userRoles = userRoles;
 	}
 
 	public String getEmail() {
@@ -118,11 +122,8 @@ public class User {
 	@Override
 	public String toString() {
 		return "User [id=" + id + ", name=" + name + ", surname=" + surname + ", username=" + username + ", password="
-				+ password + ", email=" + email + ", expenditureList=" + expenditureList + ", roles=" + roles + "]";
+				+ password + ", email=" + email + ", expenditureList=" + expenditureList + ", userRoles=" + userRoles
+				+ "]";
 	}
-
-	
-	
-	
 	
 }
