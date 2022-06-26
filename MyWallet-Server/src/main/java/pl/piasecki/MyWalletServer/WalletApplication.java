@@ -11,10 +11,8 @@ public class WalletApplication {
 	public static void main(String[] args) {
 		SpringApplication.run(WalletApplication.class, args);
 		
-        //PasswordEncoder passwordEncoder = new BCryptPasswordEncoder();
-        //System.out.println("Password: " + passwordEncoder.encode("user"));
+       // PasswordEncoder passwordEncoder = new BCryptPasswordEncoder();
+        //System.out.println("Password: " + passwordEncoder.encode("qwe456"));
 	}
 	
-
-
 }

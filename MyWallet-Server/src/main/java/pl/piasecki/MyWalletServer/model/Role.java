@@ -45,6 +45,7 @@ public class Role {
 		this.name = name;
 	}
 	
+	 
 	public Set<UserRole> getUserRoles() {
 		return userRoles;
 	}
@@ -57,5 +58,7 @@ public class Role {
 	public String toString() {
 		return "Role [id=" + id + ", name=" + name + ", userRoles=" + userRoles + "]";
 	}
+
+
 
 }
