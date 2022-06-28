@@ -34,7 +34,7 @@ public class User {
 	private List<Expenditure> expenditureList;
 	
 	@JsonIgnoreProperties("user")
-	@OneToMany(fetch = FetchType.EAGER, mappedBy = "user")
+	@OneToMany(fetch = FetchType.EAGER, cascade = CascadeType.REMOVE, mappedBy = "user")
 	private Set<UserRole> userRoles;
 
 	public User() {}
