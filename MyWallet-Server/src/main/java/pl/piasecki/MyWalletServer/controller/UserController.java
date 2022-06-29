@@ -31,10 +31,17 @@ public class UserController {
 	{
 		return userService.getUser(id);
 	}
+	
 	@GetMapping("/users/username={username}")
 	public User getUserByUsername(@PathVariable String username)
 	{
 		return userService.getUserByUsername(username);
+	}
+	
+	@GetMapping("/users/loggedIn")
+	public User getLoggedInUser()
+	{
+		return userService.getLoggedInUser();
 	}
 	
 	@PostMapping("/users")

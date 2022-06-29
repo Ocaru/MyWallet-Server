@@ -18,6 +18,8 @@ import pl.piasecki.MyWalletServer.repository.UserRepository;
 
 @Service
 public class UserService  {
+	
+	User loggedInUser;
 
 	@Autowired
 	private UserRepository userRepository;
@@ -63,6 +65,16 @@ public class UserService  {
 	public void deleteUser(long id) {
 		userRepository.deleteById(id);
 		
+	}
+	
+	public void setLoggedInUser(User user)
+	{
+		loggedInUser = user;
+	}
+	
+	public User getLoggedInUser()
+	{
+		return loggedInUser;
 	}
 	
 	
