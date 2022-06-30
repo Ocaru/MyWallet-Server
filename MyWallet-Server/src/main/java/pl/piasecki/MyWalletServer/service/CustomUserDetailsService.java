@@ -12,8 +12,8 @@ import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.stereotype.Service;
 
+import pl.piasecki.MyWalletServer.model.Role;
 import pl.piasecki.MyWalletServer.model.User;
-import pl.piasecki.MyWalletServer.model.UserRole;
 import pl.piasecki.MyWalletServer.repository.UserRepository;
 
 @Service
@@ -32,12 +32,12 @@ public class CustomUserDetailsService implements UserDetailsService {
                        new UsernameNotFoundException("User not found with username:" + username));
        userService.setLoggedInUser(user);
         return new org.springframework.security.core.userdetails.User(user.getUsername(),
-                user.getPassword(), mapRolesToAuthorities(user.getUserRoles()));
+                user.getPassword(), mapRolesToAuthorities(user.getRoles()));
     }
 
     
-    private Collection< ? extends GrantedAuthority> mapRolesToAuthorities(Set<UserRole> userRoles){
-        return userRoles.stream().map(userRole -> new SimpleGrantedAuthority(userRole.getRole().getName())).collect(Collectors.toList());
+    private Collection< ? extends GrantedAuthority> mapRolesToAuthorities(Set<Role> roles){
+        return roles.stream().map(role -> new SimpleGrantedAuthority(role.getName())).collect(Collectors.toList());
     }
 	
 }

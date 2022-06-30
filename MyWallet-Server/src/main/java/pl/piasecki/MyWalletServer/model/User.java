@@ -1,5 +1,6 @@
 package pl.piasecki.MyWalletServer.model;
 
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Set;
 
@@ -10,11 +11,12 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
+import javax.persistence.JoinTable;
+import javax.persistence.ManyToMany;
 import javax.persistence.OneToMany;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
-
 
 @Entity()
 public class User {
@@ -33,29 +35,31 @@ public class User {
 	@JoinColumn(name ="user_id", updatable = false, insertable = false) 
 	private List<Expenditure> expenditureList;
 	
-	@JsonIgnoreProperties("user")
-	@OneToMany(fetch = FetchType.EAGER, cascade = CascadeType.REMOVE, mappedBy = "user")
-	private Set<UserRole> userRoles;
+	@JsonIgnoreProperties("users")
+    @ManyToMany(fetch = FetchType.EAGER)
+    @JoinTable(name = "user_role",
+            joinColumns = @JoinColumn(name = "user_id"),
+            inverseJoinColumns = @JoinColumn(name = "role_id"))
+	private Set<Role> roles;
 
 	public User() {}
 	
 	public User(String name, String surname, String username, 
-			String password, String email, Set<UserRole> userRoles) {
+			String password, String email, Set<Role> roles) {
 		this.name = name;
 		this.surname = surname;
 		this.username = username;
 		this.password = password;
 		this.email = email;
-		this.userRoles = userRoles;
+		this.roles = roles;
 	}
 
 	
-    public void addUserRoles(UserRole userRole) {
-        this.userRoles.add(userRole);
-        userRole.setUser(this);
+    public void addRole(Role role) {
+        roles.add(role);
+        role.addUser(this);
     }
 
-    
 	public long getId() {
 		return id;
 	}
@@ -96,12 +100,12 @@ public class User {
 		this.password = password;
 	}
 
-	public Set<UserRole> getUserRoles() {
-		return userRoles;
+	public Set<Role> getRoles() {
+		return roles;
 	}
 
-	public void setUserRoles(Set<UserRole> userRoles) {
-		this.userRoles = userRoles;
+	public void setRoles(Set<Role> roles) {
+		this.roles = roles;
 	}
 
 	public String getEmail() {
@@ -122,8 +126,18 @@ public class User {
 	@Override
 	public String toString() {
 		return "User [id=" + id + ", name=" + name + ", surname=" + surname + ", username=" + username + ", password="
-				+ password + ", email=" + email + ", expenditureList=" + expenditureList + ", userRoles=" + userRoles
-				+ "]";
+				+ password + ", email=" + email + ", expenditureList=" + expenditureList + ", roles names=" + getRolesId().toString() + "]";
 	}
 	
+	
+	private List<Long> getRolesId()
+	{
+		List<Long> roleIdList = new ArrayList<Long>();
+		
+		for (Role role : roles) {
+			roleIdList.add(role.getId());
+		}
+		
+		return roleIdList;
+	}
 }

@@ -1,8 +1,6 @@
 package pl.piasecki.MyWalletServer.service;
 
-import java.util.HashSet;
 import java.util.List;
-import java.util.Set;
 
 import javax.transaction.Transactional;
 
@@ -11,9 +9,7 @@ import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 
-import pl.piasecki.MyWalletServer.model.Role;
 import pl.piasecki.MyWalletServer.model.User;
-import pl.piasecki.MyWalletServer.model.UserRole;
 import pl.piasecki.MyWalletServer.repository.UserRepository;
 
 @Service
@@ -23,6 +19,9 @@ public class UserService  {
 
 	@Autowired
 	private UserRepository userRepository;
+	
+	@Autowired
+	private RoleService roleService;
 	
 	public List<User> getUsers()
 	{
@@ -40,12 +39,10 @@ public class UserService  {
 	}
 	
 	public User addUser(User user) {
-		UserRole userRole = new UserRole(user, new Role("ROLE_USER"));
-		Set<UserRole> userRoles = new HashSet<UserRole>();
-		userRoles.add(userRole);
-		user.setUserRoles(userRoles);
+		
 	    PasswordEncoder passwordEncoder = new BCryptPasswordEncoder();
 	    user.setPassword(passwordEncoder.encode(user.getPassword()));
+	    
 		return userRepository.save(user);
 	}
 	
@@ -58,7 +55,8 @@ public class UserService  {
 		userEdited.setEmail(user.getEmail());
 		userEdited.setUsername(user.getUsername());
 		userEdited.setPassword(user.getPassword());
-		userEdited.setUserRoles(user.getUserRoles());
+		userEdited.setRoles(user.getRoles());
+		
 		return userEdited;
 	}
 

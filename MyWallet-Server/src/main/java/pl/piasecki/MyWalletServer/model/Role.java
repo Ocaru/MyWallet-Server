@@ -1,12 +1,15 @@
 package pl.piasecki.MyWalletServer.model;
 
+import java.util.ArrayList;
+import java.util.HashSet;
+import java.util.List;
 import java.util.Set;
 
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
-import javax.persistence.OneToMany;
+import javax.persistence.ManyToMany;
 
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 
@@ -18,9 +21,9 @@ public class Role {
 	private long id;
 	private String name;
 
-	@JsonIgnoreProperties("role")
-	@OneToMany(mappedBy = "role")
-	private Set<UserRole> userRoles; 
+	@JsonIgnoreProperties("roles")
+	@ManyToMany(mappedBy = "roles")
+	private Set<User> users = new HashSet<User>(); 
 
 	public Role() {
 	}
@@ -45,20 +48,34 @@ public class Role {
 		this.name = name;
 	}
 	
-	 
-	public Set<UserRole> getUserRoles() {
-		return userRoles;
+	
+	public Set<User> getUsers() {
+		return users;
+	}
+	
+	public void addUser(User user)
+	{
+		users.add(user);
 	}
 
-	public void setUserRoles(Set<UserRole> userRoles) {
-		this.userRoles = userRoles;
+	public void setUsers(Set<User> users) {
+		this.users = users;
 	}
 
 	@Override
 	public String toString() {
-		return "Role [id=" + id + ", name=" + name + ", userRoles=" + userRoles + "]";
+		return "Role [id=" + id + ", name=" + name + ", users id=" + getUsersId().toString() + "]";
 	}
 
 
-
+	private List<Long> getUsersId()
+	{
+		List<Long> userIdList = new ArrayList<Long>();
+		
+		for (User user : users) {
+			userIdList.add(user.getId());
+		}
+		
+		return userIdList;
+	}
 }
