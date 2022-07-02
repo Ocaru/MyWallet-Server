@@ -1,9 +1,10 @@
 package pl.piasecki.MyWalletServer.exception;
 
 public class ExpenditureNotFoundException extends RuntimeException {
-	
-	public ExpenditureNotFoundException(long id)
-	{
+
+	private static final long serialVersionUID = 1L;
+
+	public ExpenditureNotFoundException(long id) {
 		super("Could not find expenditure with id: " + id);
 	}
 

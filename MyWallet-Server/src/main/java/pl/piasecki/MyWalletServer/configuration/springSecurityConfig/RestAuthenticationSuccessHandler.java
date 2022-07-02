@@ -18,26 +18,22 @@ import com.auth0.jwt.algorithms.Algorithm;
 
 @Component
 public class RestAuthenticationSuccessHandler extends SimpleUrlAuthenticationSuccessHandler {
-	
-	
-    private final long expirationTime;
-    private final String secret;
 
-    public RestAuthenticationSuccessHandler(
-            @Value("${jwt.expirationTime}") long expirationTime,
-            @Value("${jwt.secret}") String secret) {
-        this.expirationTime = expirationTime;
-        this.secret = secret;
-    }
+	private final long expirationTime;
+	private final String secret;
 
-    @Override
-    public void onAuthenticationSuccess(HttpServletRequest request, HttpServletResponse response,
-                                        Authentication authentication) throws IOException, ServletException {
-        UserDetails principal = (UserDetails) authentication.getPrincipal();
-        String token = JWT.create()
-                .withSubject(principal.getUsername())
-                .withExpiresAt(new Date(System.currentTimeMillis() + expirationTime))
-                .sign(Algorithm.HMAC256(secret));
-        response.addHeader("Authorization", "Bearer " + token);
-    }
+	public RestAuthenticationSuccessHandler(@Value("${jwt.expirationTime}") long expirationTime,
+			@Value("${jwt.secret}") String secret) {
+		this.expirationTime = expirationTime;
+		this.secret = secret;
+	}
+
+	@Override
+	public void onAuthenticationSuccess(HttpServletRequest request, HttpServletResponse response,
+			Authentication authentication) throws IOException, ServletException {
+		UserDetails principal = (UserDetails) authentication.getPrincipal();
+		String token = JWT.create().withSubject(principal.getUsername())
+				.withExpiresAt(new Date(System.currentTimeMillis() + expirationTime)).sign(Algorithm.HMAC256(secret));
+		response.addHeader("Authorization", "Bearer " + token);
+	}
 }

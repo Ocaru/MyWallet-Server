@@ -19,47 +19,40 @@ public class UserController {
 
 	@Autowired
 	private UserService userService;
-	
+
 	@GetMapping("/users")
-	public List<User> getUsers()
-	{
+	public List<User> getUsers() {
 		return userService.getUsers();
 	}
-	
+
 	@GetMapping("/users/{id}")
-	public User getSingleUser(@PathVariable long id)
-	{
+	public User getSingleUser(@PathVariable long id) {
 		return userService.getUser(id);
 	}
-	
+
 	@GetMapping("/users/username={username}")
-	public User getUserByUsername(@PathVariable String username)
-	{
+	public User getUserByUsername(@PathVariable String username) {
 		return userService.getUserByUsername(username);
 	}
-	
+
 	@GetMapping("/users/loggedIn")
-	public User getLoggedInUser()
-	{
+	public User getLoggedInUser() {
 		return userService.getLoggedInUser();
 	}
-	
+
 	@PostMapping("/users")
-	public User addUser(@RequestBody User user)
-	{
+	public User addUser(@RequestBody User user) {
 		return userService.addUser(user);
 	}
-	
+
 	@PutMapping("/users")
-	public User editUser(@RequestBody User user)
-	{
+	public User editUser(@RequestBody User user) {
 		return userService.editUser(user);
 	}
-	
+
 	@DeleteMapping("/users/{id}")
-	public void deleteUser(@PathVariable long id)
-	{
+	public void deleteUser(@PathVariable long id) {
 		userService.deleteUser(id);
 	}
-	
+
 }

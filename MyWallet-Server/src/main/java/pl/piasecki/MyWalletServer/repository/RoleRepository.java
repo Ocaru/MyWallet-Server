@@ -11,7 +11,7 @@ import pl.piasecki.MyWalletServer.model.Role;
 public interface RoleRepository extends CrudRepository<Role, Long> {
 
 	Optional<Role> findByName(String name);
-	
+
 	@Query("SELECT r FROM Role r")
 	List<Role> findAllRoles();
 }

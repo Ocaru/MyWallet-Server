@@ -19,34 +19,30 @@ public class ExpenditureCategoryController {
 
 	@Autowired
 	private ExpenditureCategoryService expenditureCategoryService;
-	
+
 	@GetMapping("/expenditureCategories")
-	public List<ExpenditureCategory> getExpenditureCategories()
-	{
+	public List<ExpenditureCategory> getExpenditureCategories() {
 		return expenditureCategoryService.getExpenditureCategories();
 	}
-	
+
 	@GetMapping("/expenditureCategories/{id}")
-	public ExpenditureCategory getExpenditureCategory(@PathVariable long id)
-	{
+	public ExpenditureCategory getExpenditureCategory(@PathVariable long id) {
 		return expenditureCategoryService.getExpenditureCategory(id);
 	}
-	
+
 	@PostMapping("/expenditureCategories")
-	public ExpenditureCategory addExpenditureCategory(@RequestBody ExpenditureCategory expenditureCategory)
-	{
+	public ExpenditureCategory addExpenditureCategory(@RequestBody ExpenditureCategory expenditureCategory) {
 		return expenditureCategoryService.addExpenditureCategory(expenditureCategory);
 	}
-	
+
 	@PutMapping("/expenditureCategories")
-	public ExpenditureCategory editExpenditureCategory(@RequestBody ExpenditureCategory expenditureCategory)
-	{
+	public ExpenditureCategory editExpenditureCategory(@RequestBody ExpenditureCategory expenditureCategory) {
 		return expenditureCategoryService.editExpenditureCategory(expenditureCategory);
 	}
-	
+
 	@DeleteMapping("/expenditureCategories/{id}")
-	public void deleteExpenditure(@PathVariable long id)
-	{
+	public void deleteExpenditure(@PathVariable long id) {
 		expenditureCategoryService.deleteExpenditureCategory(id);
 	}
+	
 }

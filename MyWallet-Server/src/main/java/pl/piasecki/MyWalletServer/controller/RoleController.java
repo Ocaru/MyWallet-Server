@@ -19,34 +19,30 @@ public class RoleController {
 
 	@Autowired
 	private RoleService roleService;
-	
+
 	@GetMapping("/roles")
-	public List<Role> getRoles()
-	{
+	public List<Role> getRoles() {
 		return roleService.getRoles();
 	}
-	
+
 	@GetMapping("/roles/{id}")
-	public Role getSingleRole(@PathVariable long id)
-	{
+	public Role getSingleRole(@PathVariable long id) {
 		return roleService.getRole(id);
 	}
-	
+
 	@PostMapping("/roles")
-	public Role addRole(@RequestBody Role role)
-	{
+	public Role addRole(@RequestBody Role role) {
 		return roleService.addRole(role);
 	}
-	
+
 	@PutMapping("/roles")
-	public Role editRole(@RequestBody Role role)
-	{
+	public Role editRole(@RequestBody Role role) {
 		return roleService.editRole(role);
 	}
-	
+
 	@DeleteMapping("/roles/{id}")
-	public void deleteRole(@PathVariable long id)
-	{
+	public void deleteRole(@PathVariable long id) {
 		roleService.deleteRole(id);
 	}
+	
 }

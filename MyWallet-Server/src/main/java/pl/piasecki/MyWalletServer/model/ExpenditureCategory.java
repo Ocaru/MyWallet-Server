@@ -12,21 +12,20 @@ import javax.persistence.OneToMany;
 
 @Entity
 public class ExpenditureCategory {
-	
+
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private long id;
 	private String name;
-	
+
 	@OneToMany(cascade = CascadeType.REMOVE)
-	@JoinColumn(name ="category_id", updatable = false, insertable = false) 
+	@JoinColumn(name = "category_id", updatable = false, insertable = false)
 	private List<Expenditure> expenditureList;
-	
-	public ExpenditureCategory()
-	{
+
+	public ExpenditureCategory() {
 		
 	}
-	
+
 	public ExpenditureCategory(String name) {
 		this.name = name;
 	}
@@ -46,8 +45,6 @@ public class ExpenditureCategory {
 	public void setName(String name) {
 		this.name = name;
 	}
-	
-	
 
 	public List<Expenditure> getExpenditureList() {
 		return expenditureList;
@@ -61,7 +58,5 @@ public class ExpenditureCategory {
 	public String toString() {
 		return "ExpenditureCategory [id=" + id + ", name=" + name + ", expenditureList=" + expenditureList + "]";
 	}
-
-
 
 }

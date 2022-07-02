@@ -13,36 +13,34 @@ import pl.piasecki.MyWalletServer.repository.ExpenditureCategoryRepository;
 
 @Service
 public class ExpenditureCategoryService {
-	
+
 	@Autowired
 	private ExpenditureCategoryRepository expenditureCategoryRepository;
-	
-	public List<ExpenditureCategory> getExpenditureCategories()
-	{
+
+	public List<ExpenditureCategory> getExpenditureCategories() {
 		return expenditureCategoryRepository.findAll();
 	}
-	
-	public ExpenditureCategory getExpenditureCategory(long id)
-	{
-		return expenditureCategoryRepository.findById(id).orElseThrow(() -> new ExpenditureCategoryNotFoundException(id));
+
+	public ExpenditureCategory getExpenditureCategory(long id) {
+		return expenditureCategoryRepository.findById(id)
+				.orElseThrow(() -> new ExpenditureCategoryNotFoundException(id));
 	}
-	
+
 	public ExpenditureCategory addExpenditureCategory(ExpenditureCategory expenditureCategory) {
-		
+
 		return expenditureCategoryRepository.save(expenditureCategory);
 	}
 
 	@Transactional
-	public ExpenditureCategory editExpenditureCategory(ExpenditureCategory expenditureCategory)
-	{
-		ExpenditureCategory expenditureEdited = expenditureCategoryRepository.findById(expenditureCategory.getId()).orElseThrow();
+	public ExpenditureCategory editExpenditureCategory(ExpenditureCategory expenditureCategory) {
+		ExpenditureCategory expenditureEdited = expenditureCategoryRepository.findById(expenditureCategory.getId())
+				.orElseThrow();
 		expenditureEdited.setName(expenditureCategory.getName());
 		return expenditureEdited;
 	}
 
 	public void deleteExpenditureCategory(long id) {
 		expenditureCategoryRepository.deleteById(id);
-		
 	}
-	
+
 }
